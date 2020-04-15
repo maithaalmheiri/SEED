@@ -5,7 +5,7 @@ Created on Thu Apr  9 20:13:49 2020
 @author: Maitha_
 """
 #%%
-# store the code and text in the same directory as the .mat file
+# store egg_seed.py and DATA.txt in the same directory as the  extracted features .mat files
 import sys
 
 import numpy as np
