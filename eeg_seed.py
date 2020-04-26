@@ -36,15 +36,16 @@ test=[]
 label_test=[]
 data_=[]
 for i in range(len(exp)):
-    for j in range(15):
+    if i<11:
+        for j in range(15):
         
-        load_=0
-        load_ = loadmat(exp[i])[features[0]+str(j+1)]
-        x = np.transpose(load_, ((0,2,1)))
-        y = x.reshape(x.shape[2],-1).T
-        data_.append(y)
-        label.append(l[j]*np.ones((len(y[1]),1)))
-    if i>=11:
+            load_=0
+            load_ = loadmat(exp[i])[features[0]+str(j+1)]
+            x = np.transpose(load_, ((0,2,1)))
+            y = x.reshape(x.shape[2],-1).T
+            data_.append(y)
+            label.append(l[j]*np.ones((len(y[1]),1)))
+    elif i>=11:
             for j in range(15):
                 load_=0
                 load_ = loadmat(exp[i])[features[0]+str(j+1)]
@@ -81,7 +82,8 @@ test_X =test_X.T
 train_X = train_X.T
 train_y=np.where(train_y==-1, 2, train_y) 
 test_y=np.where(test_y==-1, 2, test_y)         
-        
+test_y = test_y.reshape(test_y.shape[0],)
+train_y = train_y.reshape(train_y.shape[0],)        
 np.save("train_X",train_X)
 np.save("train_y",train_y)
 np.save("test_X",test_X)
